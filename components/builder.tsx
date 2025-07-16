@@ -1,9 +1,9 @@
 'use client';
 
-import React, { useState } from 'react';
+import React  from 'react';
 import Toolbar from './toolbar';
 import FlowWrapper from './flow';
-import { Node } from '@xyflow/react';
+
 import NodeDetails from './nodeDetails';
 
 

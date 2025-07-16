@@ -1,7 +1,29 @@
-import { Node } from '@xyflow/react'
+import { useNodeStore } from '@/store/store'
+import type{ Node } from '@xyflow/react'
 import React from 'react'
+import MessageNodeDetails from './nodeDetailComp/messageDetails'
+import ProductNodeDetails from './nodeDetailComp/productNodeDetails'
+import CustomerDetails from './nodeDetailComp/customerDetails'
 
-const NodeDetails = ({selectedNode}:{selectedNode:Node}) => {
+const NodeDetails = () => {
+  const selectedNode = useNodeStore((state)=>state.selectedNode)
+  
+  if(!selectedNode) return null;
+
+  const renderNodeData = (node:Node) =>{
+    switch(node.type){
+      case "MessageNode":
+        return <MessageNodeDetails node={node}/>
+      case "ProductNode":
+        return <ProductNodeDetails node={node}/>
+      case "CustomerNode":
+        return <CustomerDetails node={node}/>
+      default:
+        return null
+    }
+  }
+  
+  
   return (
     <div className="space-y-2 text-gray-700 text-sm m-1">
   <div className="border rounded p-2 bg-gray-50 shadow-sm">
@@ -16,6 +38,8 @@ const NodeDetails = ({selectedNode}:{selectedNode:Node}) => {
           {JSON.stringify(selectedNode.data, null, 2)}
         </pre>
       </div>
+
+      {renderNodeData(selectedNode)}
     </div>
   </div>
 </div>

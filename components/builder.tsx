@@ -6,13 +6,15 @@ import FlowWrapper from './flow';
 import { Node } from '@xyflow/react';
 import NodeDetails from './nodeDetails';
 
+
 const Builder = () => {
-    const [selectedNode, setSelectedNode] = useState<Node|null>(null)
+    
   return (
     <div className="flex flex-col h-screen bg-gray-50 font-sans text-gray-800">
       {/* Navbar */}
       <div className="h-24 flex items-center justify-between px-6 shadow-md bg-white border-b">
         <Toolbar />
+        
       </div>
 
       {/* Main Content Area */}
@@ -24,7 +26,7 @@ const Builder = () => {
             Flow Builder
           </div>
           <div className="flex-grow">
-            <FlowWrapper setSelectedNode={setSelectedNode}/>
+            <FlowWrapper />
           </div>
         </div>
 
@@ -33,12 +35,12 @@ const Builder = () => {
           <div className="p-2 border-b text-sm font-semibold text-gray-700 bg-gray-100">
             Inspector Panel
           </div>
-          {
-            selectedNode ? <NodeDetails selectedNode={selectedNode}/>:
-            <div className="flex-grow p-2 text-sm text-gray-600">
-            Select a node to see details here.
-          </div>
-          }
+          
+             <NodeDetails />
+          {/* //   <div className="flex-grow p-2 text-sm text-gray-600">
+          //   Select a node to see details here.
+          // </div> */}
+          
           
         </div>
 
